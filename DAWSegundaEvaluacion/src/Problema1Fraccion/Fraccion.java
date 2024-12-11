@@ -12,6 +12,7 @@ public class Fraccion {
 
     private int numerador;
     private int denominador;
+    private double denominadorDecimal;
     
     
     //Constructores:
@@ -35,6 +36,18 @@ public class Fraccion {
     //Constructor copia
     public Fraccion(Fraccion fraccionCopia){
     this(fraccionCopia.numerador, fraccionCopia.denominador);
+    }
+    //constructor denominador 10^x
+    public Fraccion(double decimal){
+    this.numerador = numerador;
+    this.denominadorDecimal = decimal;
+    }
+    
+    //Setter & Getter
+    //Establece nuevos valores del numerador y el denominador para el objeto que llama a esta función
+    public void setNumDeno(int numerador, int denominador){
+    this.numerador = numerador;
+    this.denominador = denominador;
     }
     //Metodos;
     //Suma
@@ -83,9 +96,8 @@ public class Fraccion {
         if (numeradorSimp == denominadorSimp) {
             numeradorSimp = 1;
             denominadorSimp = 1;
+            return new Fraccion(numeradorSimp, denominadorSimp);
 
-        } else if (numeradorSimp == 1) {
-            System.out.println("La fracción ya está simplificada");
         } else {
             //Aplico el algoritmo de Euclides:
             while (resto != 0) {
@@ -108,6 +120,10 @@ public class Fraccion {
         numeradorSimp = this.numerador / mcd;
         denominadorSimp = this.denominador / mcd;
         return new Fraccion(numeradorSimp, denominadorSimp);
+    }
+    
+    public Fraccion clonar(){
+    return new Fraccion(this);
     }
     
     @Override
