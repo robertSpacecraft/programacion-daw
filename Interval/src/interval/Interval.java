@@ -1,9 +1,11 @@
 package interval;
-
+import java.util.Scanner;
 class Interval {
 
     private double inferior;
     private double superior;
+    
+    private Scanner input = new Scanner(System.in);
 
     /**
      * Proporciona un interval amb els límits inferior i superior que li donem
@@ -182,15 +184,16 @@ class Interval {
     /**
      * Demana a l'usuari que introduïsca els límits de l'interval
      */
-    public void recollir() {
-       
+    public void recollir() {       
+       this.inferior = validar("Introduce el límite inferior: ");
+       this.superior = validar("Introduce el límite superior");     
     }
 
     /** Mostra l'interval amb el format [limitInferior, limitSuperior].
      * 
      */
     public void mostrar() {
-        
+        System.out.println("[" + this.inferior + ", " + this.superior + "]");
     }
 
     /**
@@ -200,6 +203,21 @@ class Interval {
      */
     public Interval[] trossejar(int trossos) {
         return null;
+    }
+    
+     /**
+     * Valida que el valor introducido sea un double
+     */
+    private double validar(String mensaje){ 
+        double validada = 0.0;
+        System.out.println(mensaje);
+       while (!input.hasNextDouble()){
+           System.out.println("Debes introducir un número: ");
+           input.nextLine();
+           System.out.println(mensaje);
+       }
+       validada = input.nextDouble();
+       return validada;
     }
 
    
