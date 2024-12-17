@@ -185,8 +185,24 @@ class Interval {
      * Demana a l'usuari que introduïsca els límits de l'interval
      */
     public void recollir() {       
-       this.inferior = validar("Introduce el límite inferior: ");
-       this.superior = validar("Introduce el límite superior");     
+       //this.inferior = validar("Introduce el límite inferior: ");
+       //this.superior = validar("Introduce el límite superior");
+       GestorIO input = new GestorIO();
+       double userInferior = 0;
+       double userSuperior = 0;
+       input.out("Introduce el límite inferior: ");
+       userInferior = input.inDouble();
+       
+       input.out("Introduce el límiter superior: ");
+       userSuperior = input.inDouble();
+       
+       if (userInferior > userSuperior){
+       double aux = userInferior;
+       userInferior = userSuperior;
+       userSuperior = aux;
+       }
+       this.inferior = userInferior;
+       this.superior = userSuperior;
     }
 
     /** Mostra l'interval amb el format [limitInferior, limitSuperior].
@@ -202,7 +218,18 @@ class Interval {
      * @return 
      */
     public Interval[] trossejar(int trossos) {
-        return null;
+        Interval[] intervalos = new Interval[trossos];
+        
+        double cadaIntervalo = this.longitud() / trossos;
+        double intervaloOrigen = this.inferior;
+        
+        for (int i = 0; i < intervalos.length; i++) {
+            double intervaloDestino = intervaloOrigen + cadaIntervalo;
+            intervalos[i] = new Interval(intervaloOrigen, intervaloDestino);
+            intervaloOrigen = intervaloDestino;
+        }
+        
+        return intervalos; 
     }
     
      /**
@@ -219,7 +246,4 @@ class Interval {
        validada = input.nextDouble();
        return validada;
     }
-
-   
-
 }
