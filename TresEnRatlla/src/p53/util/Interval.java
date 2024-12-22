@@ -50,6 +50,17 @@ public class Interval {
         this.superior = 0.0;        
     }
     
+    //Getters & Setters
+    public double getInferior(){
+        return this.inferior;
+    }
+    
+    public double getSuperior(){
+        return this.superior;
+    }
+    
+    
+    
     /**
      * Para realizar las pruebas
      */
