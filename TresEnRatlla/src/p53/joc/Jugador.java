@@ -5,6 +5,8 @@
 package p53.joc;
 import p53.joc.enums.EstatCasella;
 import p53.util.GestorIO;
+import p53.joc.Coordenada;
+import p53.joc.Tauler;
 /**
  *
  * @author Robert
@@ -25,14 +27,51 @@ public class Jugador {
         }
     }
     
+    //Getter que no pide el Problema y que uso para obtener el color del jugador que tiene el turno
+    public EstatCasella getColor(){
+    return this.color;
+    }
+    
     //Métodos
+    //Devuelve un mensaje de victoria
     public void cantarVictoria(){
     io.out("¡Has ganado el juego, bien hecho!");    
     }
     
+    //Compueba si la casilla pasada por parámetro en formato coordenada esta disponible
     public String errorPosada(Tauler tauler, Coordenada coordenada){
-    String mensaje = "mensaje";
-    return mensaje;
+        if(tauler.estaOcupada(coordenada)){
+        return "Coordenada ocupada en el tauler";
+        
+        }
+    return null;
+    }
+    
+    //Recoge una coordenada válida y la devuelve 
+    public Coordenada recollirCoordenadaPosadaValida(Tauler tauler){
+        Coordenada coordenadaValida = new Coordenada();
+        coordenadaValida.recogir();
+        
+        boolean valida = true;
+        while (valida){
+            if (tauler.estaOcupada(coordenadaValida)){
+            io.out("La casilla está ocupada, introduzca una coordenada válida");
+            coordenadaValida.recogir();
+            } else {
+            valida = false;
+            }
+        }
+        
+        return coordenadaValida;
+    }
+    
+    //Recoge la coordenada válida en Tauler y despues pone la ficha
+    public void posarFitxa(Tauler tauler){
+    io.out("Posa el jugador amb: " + color.toString());
+    
+    Coordenada coordenadaPosar = recollirCoordenadaPosadaValida(tauler);
+    tauler.posarFitxa(coordenadaPosar, color);
+    
     }
     
 }

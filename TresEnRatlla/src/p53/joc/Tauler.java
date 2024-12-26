@@ -102,7 +102,7 @@ public class Tauler {
     //Verifica si una casilla está ocupada por un jugador
     public boolean estaOcupada(Coordenada coordenada){
         if (coordenada.validar()){
-            if (caselles[coordenada.getFila()][coordenada.getColumna()] == EstatCasella.BUIDA){
+            if (caselles[coordenada.getFila()][coordenada.getColumna()] != EstatCasella.BUIDA){
                 return true;
             }
         

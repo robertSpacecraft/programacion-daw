@@ -39,22 +39,24 @@ public class Coordenada {
         }
     }
     
-    public Coordenada regogir(){
-        GestorIO input = new GestorIO();
-        int fila = 0;
-        int columna = 0;
-        System.out.print("Introduce la fila (1-3): ");
-        while ((fila = input.inInt()) < 1 || fila > 3){
+    public Coordenada recogir(){
+        GestorIO io = new GestorIO();
+
+        io.out("Introduce la fila (1-3): ");
+        while ((this.fila = io.inInt()) < 1 || fila > 3){
             System.out.println("Por favor, introduzca un número dentro del rango");
             System.out.print("Introduce la fila: ");
         }
-        System.out.print("Introduce la columna (1-3): ");
-        while ((columna = input.inInt()) < 1 || columna > 3){
-            System.out.println("Por favor, introduzca un número dentro del rango");
-            System.out.print("Introduce la columna: ");
+        io.out("Introduce la columna (1-3): ");
+        while ((this.columna = io.inInt()) < 1 || columna > 3){
+           io.out("Por favor, introduzca un número dentro del rango");
+           io.out("Introduce la columna: ");
         }
         
-    return new Coordenada(fila, columna);
+        this.fila -= 1;
+        this.columna -= 1;
+        
+    return this;
     }
 
 }
