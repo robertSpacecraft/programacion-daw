@@ -20,6 +20,8 @@ public class TresEnRatlla {
     private Jugador[] jugadors;
     private Torn torn;
     
+    private int turno;//Controla cuantos turnos han pasado
+    
     GestorIO io = new GestorIO();
     
    //constructores
@@ -28,7 +30,9 @@ public class TresEnRatlla {
         this.jugadors = new Jugador[2];
         this.jugadors[0] = new Jugador(EstatCasella.OS);
         this.jugadors[1] = new Jugador(EstatCasella.XS);
-        this.torn = new Torn();        
+        this.torn = new Torn();
+        
+        this.turno = 0;
     }
     
     //Metodos
@@ -36,15 +40,42 @@ public class TresEnRatlla {
         tauler.mostrar(); //muestra el tablero
         int juga = torn.toca(); //Decide que jugador empieza el juego
         
+        while (!tauler.hiHaTresEnRatlla()){
+        //Primera parte
+        juga = gestioTorns(juga);                             
+        }                                          
+    
+    }
+    
+    private int gestioTorns(int juga){
         //Muestra el jugador que empieza
         io.out("El jugador: " + jugadors[juga].getColor().toString() + " Tiene el turno.\n");
-        Coordenada coordenada = jugadors[juga].recollirCoordenadaPosadaValida(tauler);//Pide la coordenada
         
-        
+        //Pide la coordenada válida
+        Coordenada coordenada = jugadors[juga].recollirCoordenadaPosadaValida(tauler);
+                  
+        //El jugador pone la primera ficha
         tauler.posarFitxa(coordenada, jugadors[juga].getColor());
+        
+        //Si ya hay posibilidades de que haya tres en raya
+        if (turno > 4){
+            if (tauler.hiHaTresEnRatlla()){
+                jugadors[juga].cantarVictoria();
+            }
+        }
+        
+        
+        //Muestra el tablero despues de poner la ficha:
         tauler.mostrar();
-       
-                               
+        
+        //Cambia el turno:
+        torn.canviar();
+        
+        //Suma uno a turno
+        this.turno++;
+        
+        //Devuelvae el turno actualizado
+        return torn.toca();
     
     }
     

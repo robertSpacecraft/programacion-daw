@@ -13,11 +13,9 @@ import p53.joc.Coordenada;
         
 public class Tests {
     public static void main(String[] args) {
-        Coordenada c1 = new Coordenada();
-        c1.recogir();
+        TresEnRatlla j1 = new TresEnRatlla();
+        j1.jugar();
         
-        System.out.println("fila: " + c1.getFila()
-        + "\nColuman: " + c1.getColumna());
        
         
       
