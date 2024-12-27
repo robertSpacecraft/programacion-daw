@@ -36,15 +36,25 @@ public class TresEnRatlla {
     }
     
     //Metodos
-    public void jugar(){
+    public void jugar() {
         tauler.mostrar(); //muestra el tablero
         int juga = torn.toca(); //Decide que jugador empieza el juego
-        
-        while (!tauler.hiHaTresEnRatlla()){
-        //Primera parte
-        juga = gestioTorns(juga);                             
-        }                                          
-    
+
+        boolean ganar = false;
+        while (!ganar) {
+            //Primera parte
+            juga = gestioTorns(juga);
+
+            //Si ya hay posibilidades de que haya tres en raya
+            if (turno > 4) {
+                if (tauler.hiHaTresEnRatlla()) {
+                    jugadors[juga].cantarVictoria();
+                    ganar = true;
+                }
+            }
+
+        }
+
     }
     
     private int gestioTorns(int juga){
@@ -56,15 +66,7 @@ public class TresEnRatlla {
                   
         //El jugador pone la primera ficha
         tauler.posarFitxa(coordenada, jugadors[juga].getColor());
-        
-        //Si ya hay posibilidades de que haya tres en raya
-        if (turno > 4){
-            if (tauler.hiHaTresEnRatlla()){
-                jugadors[juga].cantarVictoria();
-            }
-        }
-        
-        
+               
         //Muestra el tablero despues de poner la ficha:
         tauler.mostrar();
         
