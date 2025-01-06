@@ -10,6 +10,7 @@
 public class Trigonometria {
     public static void main(String[] args) {
         
+        //Pruebas Angulo:
         Angulo a = new Angulo(90);
         Angulo b = new Angulo(750);
         Angulo c = new Angulo(-77);
@@ -73,9 +74,20 @@ public class Trigonometria {
         //Aquí claramente vemos como en b = e lo que hemos hecho es cambiar la refrencia del objeto e y
         //le hemos puesto la del objeto b
         
+        //Pruebas Triángulo:
+        Triangulo t1 = new Triangulo(5, 5, 5);
+        Angulo f = new Angulo(60);
+        Angulo g = new Angulo(50);
+        Triangulo t2 = new Triangulo (5, f, g);
+        //Triangulo t3 = new Triangulo(5, 7, f);
+        System.out.println("Triángulo t1: " + t1);
+        System.out.println("\nTriangulo t2: " + t2);
+        System.out.println("\nVisualizar: " + t2.visualizar());
+       // System.out.println("\nTriángulo t3: " + t3);
         
         
-        
+
+
     }
-    
+
 }
