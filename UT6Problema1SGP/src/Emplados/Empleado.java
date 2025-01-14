@@ -70,7 +70,7 @@ public abstract class Empleado {
     }
   
     //Métodos abstractos
-    public abstract void calularSalario();
+    public abstract void calcularSalario();
     public abstract void mostrarDetalles();
     
     //Métodos concretos

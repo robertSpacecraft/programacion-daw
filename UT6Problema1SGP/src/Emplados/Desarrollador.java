@@ -13,44 +13,49 @@ public class Desarrollador extends Empleado {
     //Atributos
     private String lenguaje;
     private int horasExtra;
-    private double salarioBase;
     private double bonus;
+    private double salarioTotal;
     
     //Constructores
-    public Desarrollador(String nombre, String apellido, int id, String lenguaje, int horasExtra, double salarioBase, double bonus){
+    public Desarrollador(String nombre, String apellido, int id, String lenguaje, int horasExtra, double bonus){
     super(nombre, apellido, id);
     this.lenguaje = lenguaje;
     this.horasExtra = horasExtra;
-    this.salarioBase = salarioBase;
     this.bonus = bonus;
+    this.salarioTotal = 0.0;
     }
     
-    public Desarrollador(String nombre, String apellido, int id, double salario, double puntuacionEvaluacion, String lenguaje, int horasExtra, double salarioBase, double bonus){
+    public Desarrollador(String nombre, String apellido, int id, double salario, double puntuacionEvaluacion, String lenguaje, int horasExtra, double bonus){
     super(nombre, apellido, id, salario, puntuacionEvaluacion);
     this.lenguaje = lenguaje;
     this.horasExtra = horasExtra;
-    this.salarioBase = salarioBase;
-    this.bonus = bonus;    
+    this.bonus = bonus;
+    this.salarioTotal = 0.0;
     }
     
     public Desarrollador(){
     super();
     this.lenguaje = "";
     this.horasExtra = 0;
-    this.salarioBase = 0.0;
     this.bonus = 0.0;
+    this.salarioTotal = 0.0;
     }
     
     //Métodos sobreescritos
     @Override
-    public void calularSalario(){
-        this.salarioBase = super.getSalario() + bonus;    
+    public void calcularSalario(){
+         this.salarioTotal = super.getSalario() + (this.bonus * this.horasExtra);    
     }
     
     @Override
     public void mostrarDetalles(){
         System.out.println(super.toString() + "\nLenguaje: " + lenguaje 
-            + "\nHoras Extra: " + horasExtra + "\nBonus: " + bonus);
+            + "\nHoras Extra: " + this.horasExtra + "\nBonus: " + this.bonus 
+            + "\nSalario Total = " + this.salarioTotal);
+    }
+    
+    public double getSalarioTotal(){
+        return this.salarioTotal;
     }
     
 }
