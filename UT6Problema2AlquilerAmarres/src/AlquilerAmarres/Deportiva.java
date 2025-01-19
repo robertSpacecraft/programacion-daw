@@ -14,7 +14,12 @@ public class Deportiva extends Embarcacion {
 
     public Deportiva(String matricula, double metrosEslora, int anyoFabricacion, double potencia) {
         super(matricula, metrosEslora, anyoFabricacion);
-        this.potencia = potencia;
+        if (potencia >= 0) {
+            this.potencia = potencia;
+        } else {
+            System.out.println("La potencia no puede un valor negativo");
+            this.potencia = 0;
+        }
     }
     
     @Override

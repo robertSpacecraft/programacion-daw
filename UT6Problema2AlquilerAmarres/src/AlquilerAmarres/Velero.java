@@ -14,9 +14,14 @@ public class Velero extends Embarcacion {
 
     
     //Constructor
-    public Velero(String matricula, double metrosEslora, int anyoFabricacion, int numeroMastiles){
-    super(matricula, metrosEslora, anyoFabricacion);
-    this.numeroMastiles = numeroMastiles;
+    public Velero(String matricula, double metrosEslora, int anyoFabricacion, int numeroMastiles) {
+        super(matricula, metrosEslora, anyoFabricacion);
+        if (numeroMastiles > 0) {
+            this.numeroMastiles = numeroMastiles;
+        } else {
+            System.out.println("Un velero debe tener al menos un mastil");
+            this.numeroMastiles = 1;
+        }
     }
 
     @Override

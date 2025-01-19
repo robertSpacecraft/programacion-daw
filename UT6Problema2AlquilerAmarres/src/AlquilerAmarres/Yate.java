@@ -12,10 +12,20 @@ public class Yate extends Embarcacion{
     private final double potencia;
     private final int numeroCabinas;
     
-    public Yate(String matricula, double metrosEslora, int anyoFabricacion, double potencia, int numeroCabinas){
+    public Yate(String matricula, double metrosEslora, int anyoFabricacion, double potencia, int numeroCabinas) {
         super(matricula, metrosEslora, anyoFabricacion);
-        this.potencia = potencia;
-        this.numeroCabinas = numeroCabinas;
+        if (potencia >= 0) {
+            this.potencia = potencia;
+        } else {
+            System.out.println("El valor de la potencia no puede ser negativo");
+            this.potencia = 0;
+        }
+        if (numeroCabinas >= 0) {
+            this.numeroCabinas = numeroCabinas;
+        } else {
+            System.out.println("El número de cabinas no puede ser negativo");
+            this.numeroCabinas = 0;
+        }
     }
     
     @Override
