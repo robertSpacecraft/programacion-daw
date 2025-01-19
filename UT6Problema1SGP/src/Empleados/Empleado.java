@@ -1,4 +1,6 @@
-package Emplados;
+package Empleados;
+
+import Interfaces.Evaluable;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -9,34 +11,29 @@ package Emplados;
  *
  * @author Robert
  */
-public abstract class Empleado {
+public abstract class Empleado implements Evaluable {
     
     //Atributos
     private String nombre, apellido;
     private final int id;
-    private double salario, puntuacionEvaluacion;
+    private double salario;
+    private int puntuacionEvaluacion;
     
     //Constructores
-    public Empleado(String nombre, String apellido, int id, double salario, double puntuacionEvaluacion){
+    public Empleado(String nombre, String apellido, int id, double salario, int puntuacionEvaluacion){
         this.nombre = nombre;
         this.apellido = apellido;
         this.id = id;
         this.salario = salario;
         this.puntuacionEvaluacion = puntuacionEvaluacion;
     }
-    public Empleado(String nombre, String apellido, int id){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.id = id;
-        this.salario = salario;
-        this.puntuacionEvaluacion = puntuacionEvaluacion;
-    }
+
     public Empleado(){
         this.nombre = "";
         this.apellido = "";
         this.id = 0;
         this.salario = 0.0;
-        this.puntuacionEvaluacion = 0.0;
+        this.puntuacionEvaluacion = 0;
     
     }
     
@@ -64,9 +61,13 @@ public abstract class Empleado {
     public double getSalario() {
         return this.salario;
     }
-
-    public double setPuntuacionEvaluacion() {
+    
+    public int getPuntuacionEvaluacion(){
         return this.puntuacionEvaluacion;
+    }
+
+    public void setPuntuacionEvaluacion(int puntuacion) {
+        this.puntuacionEvaluacion = puntuacion;
     }
   
     //Métodos abstractos
@@ -78,10 +79,25 @@ public abstract class Empleado {
         return this.nombre + " " + this.apellido;   
     }
     
-    //Otros métodos    
+    //Otros métodos
+    @Override
     public String toString(){
         return "Nombre: " + this.nombre + "\nApellido: " + this.apellido + "\nId: " + this.id 
-                    + "\nSalario: " + this.salario + "\nPuntuación de la evaluación: " + this.puntuacionEvaluacion;
+                    + "\nSalario Base: " + this.salario + "\nPuntuación de la evaluación: " + this.puntuacionEvaluacion;
+    }
+    
+        @Override
+    public void evaluar(int puntuacion) {
+        if (puntuacion >= 0 || puntuacion <= 10) {
+            this.puntuacionEvaluacion = puntuacion;
+        } else {
+            System.out.println("La puntuación debe estar entre 0 y 10");
+        }
+    }
+
+    @Override
+    public int obtenerEvaluacionActual() {
+        return this.puntuacionEvaluacion;
     }
       
 }

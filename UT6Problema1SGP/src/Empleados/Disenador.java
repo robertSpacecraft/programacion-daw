@@ -1,4 +1,6 @@
-package Emplados;
+package Empleados;
+
+import Gestiones.CalculadoraSalario;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,41 +14,42 @@ package Emplados;
 public class Disenador extends Empleado {
     
     private String herramientasDisenyoUsadas;
-    private double bonusProyecto;
+    private int bonusCantidadProyectos;
     private double salarioTotal;
 
-    public Disenador(String nombre, String apellido, int id, double salario, double puntuacionEvaluacion) {
+    public Disenador(String nombre, String apellido, int id, double salario, int puntuacionEvaluacion, int bonusProyecto, String herramientasDisenyoUsadas) {
         super(nombre, apellido, id, salario, puntuacionEvaluacion);
-        this.bonusProyecto = 0;
+        this.herramientasDisenyoUsadas = herramientasDisenyoUsadas;
+        this.bonusCantidadProyectos = bonusProyecto;
         this.salarioTotal = 0;
     }
 
-    public Disenador(String nombre, String apellido, int id) {
-        super(nombre, apellido, id);
-        this.bonusProyecto = 0;
-        this.salarioTotal = 0;
-    }
 
     public Disenador() {
         super();
-        this.bonusProyecto = 0;
+        this.bonusCantidadProyectos = 0;
         this.salarioTotal = 0;
     }
     
     @Override
     public void calcularSalario(){
-        this.salarioTotal = super.getSalario() + this.bonusProyecto;
+        this.salarioTotal = CalculadoraSalario.calcularBonusDisenador(this, this.bonusCantidadProyectos);
     }
     
     @Override
     public void mostrarDetalles(){
         System.out.println(super.toString() + "\nHerramientas de Diseño utilizadas: " + herramientasDisenyoUsadas
-            + "\nBonus del Proyecto: " + this.bonusProyecto
+            + "\nBonus del Proyecto: " + this.bonusCantidadProyectos
             + "\nSalario Total = " + this.salarioTotal);
     }
     
+    //Getters and Setters
     public Double getSalarioTotal(){
         return this.salarioTotal;
     }
     
+    public double getBonusCantidadProyecto(){
+        return this.bonusCantidadProyectos;
+    }
+       
 }
