@@ -14,20 +14,25 @@ import matriugenerica.MatriuException;
 public class TestMatriuEnters {
 
     public static void main(String[] args) {
-        MatriuEnters mEa = new MatriuEnters(3);
-        
-        MatriuEnters mEb = new MatriuEnters(3);
-        
-        mEa.mostrarMatriu();
-        System.out.println("-------");
-        mEb.mostrarMatriu();
-        System.out.println("SUMA:");
-        try{
-        mEa.sumar(mEb.getMatriu());
-        } catch (MatriuException e){
-            System.out.println("Error: " + e.getMessage());
-        }                
-        mEa.imprimirUltimaOperacion();
+        MatriuEnters m1 = new MatriuEnters(3);
+        try {
+            Integer[][] m2 = {{1, 5, 8}, {3, 9, 3}, {4, 6, 8}};
+            Integer[][] m3 = {{1, 1, 1}, {1, 1, 1}, {1, 1, 1}};
+            m1.sumar(m2);
+            m1.imprimirUltimaOperacion();
+            m1.multiplicar(m3);
+            m1.imprimirUltimaOperacion();
+            m1.zero();
+            m1.sumar(m3);
+            m1.imprimirUltimaOperacion();
+            m1.zero();
+            m1.multiplicar(m3);
+            m1.imprimirUltimaOperacion();
+            
+        } catch (MatriuException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
     
 }

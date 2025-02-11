@@ -26,7 +26,7 @@ public abstract class MatriuGenerica<T extends Number> {
     public MatriuGenerica(int tamany) {
         Random random = new Random();
         
-        this.matriu = (T[][]) new Object[tamany][tamany];
+        this.matriu = (T[][]) new Number[tamany][tamany];
         for (int i = 0; i < this.matriu.length; i++) {
             for (int j = 0; j < this.matriu[i].length; j++) {
                 this.matriu[i][j] = this.aleatory();
@@ -53,19 +53,19 @@ public abstract class MatriuGenerica<T extends Number> {
         }
 
         // Nou matriu que substituirà a l'actual
-        T[][] resultat = (T[][]) new Object[this.matriu.length][this.matriu[0].length];
+        T[][] resultat = (T[][]) new Number[this.matriu.length][this.matriu[0].length];
 
         // Realitzar la suma
         for (int i = 0; i < resultat.length; i++) {
             for (int j = 0; j < resultat[i].length; j++) {
-                resultat[i][j] = this.suma((T) this.matriu[i][j], (T) matriu[i][j]);
+                resultat[i][j] = this.suma(this.matriu[i][j], matriu[i][j]);
             }
         }
 
         // Emmagatzematge de la informació en els atributs de la classe
-        this.matriuOpEsquerra = (T[][]) this.matriu;
-        this.matriuOpDreta = (T[][]) matriu;
-        this.matriu = (T[][]) resultat;
+        this.matriuOpEsquerra = this.matriu;
+        this.matriuOpDreta = matriu;
+        this.matriu = resultat;
         this.tipusUltimaOperacio = TipusOperacio.SUMA;
     }
 
@@ -84,7 +84,7 @@ public abstract class MatriuGenerica<T extends Number> {
         }
 
         // Nou array que substituirà a l'actual
-        T[][] resultat = (T[][]) new Object[this.matriu.length][matriu[0].length];
+        T[][] resultat = (T[][]) new Number[this.matriu.length][matriu[0].length];
 
         // Realitzar la multiplicació
         for (int i = 0; i < resultat.length; i++) {
@@ -92,15 +92,15 @@ public abstract class MatriuGenerica<T extends Number> {
                 resultat[i][j] = this.zero();
 
                 for (int k = 0; k < this.matriu[0].length; k++) {
-                    resultat[i][j] = this.multiplicacion((T) this.matriu[i][j], (T) matriu[i][j]);
+                    resultat[i][j] = this.multiplicacion( this.matriu[i][j], matriu[i][j]);
                 }
             }
         }
 
         // Emmagatzematge de la informació en els atributs de la classe
-        this.matriuOpEsquerra = (T[][]) this.matriu;
-        this.matriuOpDreta = (T[][]) matriu;
-        this.matriu = (T[][]) resultat;
+        this.matriuOpEsquerra = this.matriu;
+        this.matriuOpDreta = matriu;
+        this.matriu = resultat;
         this.tipusUltimaOperacio = TipusOperacio.MULTIPLICACIO;
     }
 
@@ -133,7 +133,7 @@ public abstract class MatriuGenerica<T extends Number> {
         }
         System.out.println("");
     }
-    //Sobreescrituras
+    //Metodo que muestra la matriz
     public void mostrarMatriu(){
         for (int i = 0; i < matriu.length; i++) {
             for (int j = 0; j < matriu[i].length; j++) {
@@ -142,12 +142,7 @@ public abstract class MatriuGenerica<T extends Number> {
             System.out.println(" ");
         }
  
-    }
-    public T[][] getMatriu(){
-        return (T[][]) this.matriu;
-    }
-    
-
+    }  
     
     //Métodos abstractos:
     abstract T suma(T a, T b);
