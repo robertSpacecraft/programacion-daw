@@ -10,22 +10,23 @@ import java.util.Random;
 /**
  *
  * @author jmas
+ * @param <T>
  */
 public abstract class MatriuGenerica<T extends Number> {
 
     // Matrius implicades en l'última operació realitzada
-    private Object[][] matriuOpEsquerra;
-    private Object[][] matriuOpDreta;
+    private T[][] matriuOpEsquerra;
+    private T[][] matriuOpDreta;
 
     private TipusOperacio tipusUltimaOperacio;
 
     // Matriu resultat
-    private Object[][] matriu;
+    private T[][] matriu;
 
     public MatriuGenerica(int tamany) {
         Random random = new Random();
         
-        this.matriu = new Object[tamany][tamany];
+        this.matriu = (T[][]) new Object[tamany][tamany];
         for (int i = 0; i < this.matriu.length; i++) {
             for (int j = 0; j < this.matriu[i].length; j++) {
                 this.matriu[i][j] = this.aleatory();
@@ -52,7 +53,7 @@ public abstract class MatriuGenerica<T extends Number> {
         }
 
         // Nou matriu que substituirà a l'actual
-        Object[][] resultat = new Object[this.matriu.length][this.matriu[0].length];
+        T[][] resultat = (T[][]) new Object[this.matriu.length][this.matriu[0].length];
 
         // Realitzar la suma
         for (int i = 0; i < resultat.length; i++) {
@@ -83,7 +84,7 @@ public abstract class MatriuGenerica<T extends Number> {
         }
 
         // Nou array que substituirà a l'actual
-        Object[][] resultat = new Object[this.matriu.length][matriu[0].length];
+        T[][] resultat = (T[][]) new Object[this.matriu.length][matriu[0].length];
 
         // Realitzar la multiplicació
         for (int i = 0; i < resultat.length; i++) {
