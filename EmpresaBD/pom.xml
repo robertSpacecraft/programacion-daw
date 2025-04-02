@@ -14,12 +14,12 @@
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
             <artifactId>ojdbc8</artifactId>
-            <version>21.5.0.0</version>
+            <version>23.7.0.25.01</version>
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-jdbc</artifactId>
-            <version>10.1.18</version>
+            <version>10.1.0-M12</version>
         </dependency>
     </dependencies>
     <name>EmpresaBD</name>
