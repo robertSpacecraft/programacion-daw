@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.Consumer;
 import model.Connexio;
 import model.Empleat;
 import model.Oficina;
@@ -103,6 +104,24 @@ public class Principal {
             Date fechaHoy = new Date(System.currentTimeMillis());
             String sql5 = "INSERT INTO empleat (numemp, nom, edat, oficina, ocupacio, contracte) VALUES(?, ?, ?, ?, ?, ?)";
             
+            try (Connection conn = connexio.getDatasource().getConnection();
+                    PreparedStatement ps = configure(conn.prepareStatement(sql5),
+                            p -> {
+                                p.setInt(1, numeroEmpleat);
+                                p.setString(2, nom);
+                                p.setInt(3, edat);
+                                p.setInt(4, oficina);
+                                p.setString(5, ocupacio);
+                                p.setDate(6, fechaHoy);
+                                                                
+                            })){
+                int insertado = ps.executeUpdate();
+                if (insertado > 0) {
+                    System.out.println("Empleado insertado correctamente");
+                }
+            } catch (SQLException e){
+                System.out.println("Error al insertar el empleado: " + e.getMessage());
+            }
             
 
             //6-7-8 Implementa classes i mètodes que calguen.
@@ -136,4 +155,13 @@ public class Principal {
         }
 
     }
+    
+    //Sugerencia de José Ramón para poder meterlo todo en el try-with-resources
+    public static PreparedStatement configure(PreparedStatement ps, 
+            Consumer<PreparedStatement> config)
+            throws SQLException{
+        config.accept(ps);
+        return ps;
+    }
+    
 }
