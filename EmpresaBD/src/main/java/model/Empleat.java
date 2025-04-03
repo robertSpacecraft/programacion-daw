@@ -33,6 +33,17 @@ public class Empleat {
         return edad;
     }
     
+    public int getNumEmpleado(){
+        return this.numEmpleado;
+    }
+    
+    public int getOficina(){
+        return this.oficina;
+    }
+    
+    public String getProfesion(){
+     return this.profesion;
+    }
     
     
 }
