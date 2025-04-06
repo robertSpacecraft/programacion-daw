@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+import static model.Mejoras.configure;
 
 public class OficinaDAO {
 
@@ -47,6 +48,27 @@ public class OficinaDAO {
                 .collect(Collectors.toCollection(ArrayList::new));
         return listaOficinasPorCiudad;
         
+
+    }
+    //Comprueba si la oficina ya existe en la base de datos
+    public static boolean comprobarOficina(int numOficina){
+        Connexio connecxio8 = Connexio.getConnexio();
+        String sql8 = "SELECT * FROM oficines WHERE oficina = ?";
+        
+        try (Connection conn = connecxio8.getDatasource().getConnection();
+                PreparedStatement ps = configure(conn.prepareStatement(sql8),
+                        p -> p.setInt(1, numOficina));
+                ResultSet rs = ps.executeQuery()){
+            
+            return rs.next();
+            
+        } catch(SQLException e){
+            System.out.println("No se ha podido consulta la oficina: " + e.getLocalizedMessage());            
+        }
+        return false;
+    }
+    
+}
         /*
             Connexio conexion = Connexio.getConnexio();
             String consultaPorCiudad = "SELECT * FROM oficines WHERE ciutat = ?";
@@ -71,6 +93,3 @@ public class OficinaDAO {
              return listaOficinasPorCiudad
             }
         */
-    }
-    
-}

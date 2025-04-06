@@ -12,8 +12,10 @@ import java.util.function.Consumer;
 import model.Connexio;
 import model.Empleat;
 import model.EmpleatDAO;
+import static model.EmpleatDAO.comprobarEmpleado;
 import model.Oficina;
 import model.OficinaDAO;
+import static model.OficinaDAO.comprobarOficina;
 import oracle.jdbc.driver.utils.ThrowingConsumer;
 
 public class Principal {
@@ -80,8 +82,12 @@ public class Principal {
                         
                         empleadosEdades.add(new Empleat(nombre, edad));                      
                     }
+                    if (!empleadosEdades.isEmpty()){
                     empleadosEdades.forEach(empleado -> System.out.println("Nombre: " + empleado.getNombre() +
                             "\nEdad: " + empleado.getEdad()));
+                    } else {
+                        System.out.println("Ningún empleado entre esas edades");
+                    }
                 }
             } catch(SQLException e){
                 System.out.println("No se han podido obtener los datos: " + e.getMessage());
@@ -91,6 +97,11 @@ public class Principal {
             System.out.print("Introdueix codi empleat: ");
             int numeroEmpleat = teclat.nextInt();
             teclat.nextLine();
+            //Compruebo si el empleado ya existe en la BD
+             if (comprobarEmpleado(numeroEmpleat)){
+            System.out.println("El empleado ya está en la BD");
+            return;
+            }
             System.out.print("Introdueix nom: ");
             String nom = teclat.nextLine();
             System.out.print("Introdueix edat: ");
@@ -109,7 +120,8 @@ public class Principal {
             new EmpleatDAO().afegir(empleatAInserir);
 
             // 9 Implementa classes i mètodes que calguen.
-            //new EmpleatDAO().moure(2, 3);
+            //NOTA: esto moverá a Joan Molla de la 2 -> 3
+            new EmpleatDAO().moure(2, 3);
             
             //10 Implementa classes i mètodes que calguen.
             //new EmpleatDAO().eliminar(4);
