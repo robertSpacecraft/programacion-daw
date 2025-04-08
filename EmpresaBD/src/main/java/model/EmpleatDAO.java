@@ -103,9 +103,37 @@ public class EmpleatDAO {
 
             if (actualizado > 0) {
                 System.out.println("Los registros se han movido correctamente");
+            } else {
+                System.out.println("Ningún empleado con los requisitos en origen");
             }
         } catch (SQLException e) {
             System.out.println("No se ha podido realizar el traspaso: " + e.getMessage());
+        }
+    }
+    //Elimina un empleado por su número de empleado.
+    public static void eliminar(int numEmpleado){
+        System.out.println("Buscando empleado...");
+        if (!comprobarEmpleado(numEmpleado)){
+            System.out.println("El empleado introducido no está en la BD");
+            return;
+        }
+        Connexio connexio10 = Connexio.getConnexio();
+        String sql10 = "DELETE FROM empleats WHERE numemp = ?";
+        
+        try (Connection conn = connexio10.getDatasource().getConnection();
+                PreparedStatement ps = configure(conn.prepareStatement(sql10),
+                        p -> p.setInt(1, numEmpleado))){
+            
+            int eliminado = ps.executeUpdate();
+            
+            if (eliminado > 0){
+                System.out.println("Empleado eliminado correctamente");
+            }  else {
+                System.out.println("El empleado no ha sido eliminado");
+            }
+            
+        } catch(SQLException e){
+            System.out.println("No se ha podido ejecutar acción: " + e.getMessage());
         }
     }
 

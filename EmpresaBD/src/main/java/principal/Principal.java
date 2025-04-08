@@ -124,21 +124,33 @@ public class Principal {
             new EmpleatDAO().moure(2, 3);
             
             //10 Implementa classes i mètodes que calguen.
-            //new EmpleatDAO().eliminar(4);
+            new EmpleatDAO().eliminar(104);
             
             //11 
+            OficinaDAO oficinaDAO11 = new OficinaDAO();
+            for (Oficina oficina11 : OficinaDAO.getAll()){
+                System.out.println(oficina11);
+            }
             
             //12
             System.out.print("Introdueix una superficie mínima: ");
             int superficie = teclat.nextInt();
             teclat.nextLine();
+            ArrayList<Oficina> oficinasBD = OficinaDAO.oficinasMayoresA(superficie);
+
+            if (oficinasBD != null && !oficinasBD.isEmpty()) {
+                System.out.println("Oficinas con una superficie supererior a " + superficie + ":");
+                oficinasBD.forEach(System.out::println);
+            } else {
+                System.out.println("No se han encontrados oficinas superiores a: " + superficie);
+            }
             // Implementa ací el codi que falta.
             
             //13
-            //oficinaDAO.actualitzarCiutat(9, "Sax");
+            oficinaDAO.actualitzarCiutat(9, "Sax");
             
             //14
-            //oficinaDAO.incrementarVendes(9, 100.5);
+            oficinaDAO.incrementarVendes(9, 100.5);
 
             connexio.getDatasource().close();
 
