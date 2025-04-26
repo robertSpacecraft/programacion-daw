@@ -1,10 +1,44 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/formulario.css">
+
+        <title>Alquiler de Barcos</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Alta de una nueva embarcación</h1>
+
+        <form action="addEmbarcacion" method="post">
+            <label for="matricula">Matrícula:</label>
+            <input type="text" id="matricula" name="matricula" required><br><br>
+
+            <label for="eslora">Eslora (en metros):</label>
+            <input type="number" id="eslora" name="eslora" step="0.1" required><br><br>
+
+            <label for="fabricacionYear">Año de fabricación:</label>
+            <input type="number" id="fabricacionYear" name="fabricacionYear" required><br><br>
+
+            <label for="tipo">Tipo de embarcación:</label>
+            <select id="tipo" name="tipo" required>
+                <option value="" disabled selected>-- Selecciona tipo de barco --</option>
+                <option value="velero">Velero</option>
+                <option value="deportiva">Embarcación deportiva</option>
+                <option value="yate">Yate</option>
+            </select><br><br>
+
+            <div>
+                <label for="numeroMastiles">Número de mástiles:</label>
+                <input type="number" id="numeroMastiles" name="numeroMastiles"><br><br>
+
+                <label for="potencia">Potencia:</label>
+                <input type="number" id="potencia" name="potencia"><br><br>
+
+                <label for="numCamarotes">Número de camarotes:</label>
+                <input type="number" id="numCamarotes" name="numCamarotes"><br><br>
+            </div>
+
+            <input type="submit" value="Agruegar Embarcación">
+        </form>
     </body>
 </html>
