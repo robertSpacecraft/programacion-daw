@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/formulario.css">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Afegir Vaixell</title>
+    <link rel="stylesheet" href="css/formulario.css">
+</head>
+<body>
 
-        <title>Alquiler de Barcos</title>
-    </head>
-    <body>
-        <h1>Alta de una nueva embarcación</h1>
+<h1>Alta de una nueva embarcación</h1>
 
-        <form action="addEmbarcacion" method="post">
-            <label for="matricula">Matrícula:</label>
-            <input type="text" id="matricula" name="matricula" required><br><br>
+<form action="addEmbarcacion" method="post">
+    <label for="tipo">Tipo de Embarcación:</label>
+    <select id="tipo" name="tipo" required onchange="mostrarCampos()">
+        <option value="" disabled selected>-- Tipo de embarcación --</option>
+        <option value="velero">Velero</option>
+        <option value="deportiva">Embarcació esportiva</option>
+        <option value="yate">Yate</option>
+    </select>
 
-            <label for="eslora">Eslora (en metros):</label>
-            <input type="number" id="eslora" name="eslora" step="0.1" required><br><br>
+    <label for="matricula">Matrícula:</label>
+    <input type="text" id="matricula" name="matricula" required>
 
-            <label for="fabricacionYear">Año de fabricación:</label>
-            <input type="number" id="fabricacionYear" name="fabricacionYear" required><br><br>
+    <label for="metrosEslora">Metros de Eslora:</label>
+    <input type="number" id="metrosEslora" name="metrosEslora" step="0.1" required>
 
-            <label for="tipo">Tipo de embarcación:</label>
-            <select id="tipo" name="tipo" required>
-                <option value="" disabled selected>-- Selecciona tipo de barco --</option>
-                <option value="velero">Velero</option>
-                <option value="deportiva">Embarcación deportiva</option>
-                <option value="yate">Yate</option>
-            </select><br><br>
+    <label for="anyoFabricacion">Año de fabricación:</label>
+    <input type="number" id="anyoFabricacion" name="anyoFabricacion" required>
 
-            <div>
-                <label for="numeroMastiles">Número de mástiles:</label>
-                <input type="number" id="numeroMastiles" name="numeroMastiles"><br><br>
+    <!-- Campos específicos -->
+    <div id="campoMastiles" class="campoOculto">
+        <label for="numMastiles">Número de mástiles:</label>
+        <input type="number" id="numMastiles" name="numMastiles">
+    </div>
 
-                <label for="potencia">Potencia:</label>
-                <input type="number" id="potencia" name="potencia"><br><br>
+    <div id="campoPotencia" class="campoOculto">
+        <label for="potencia">Potencia:</label>
+        <input type="number" id="potencia" name="potencia">
+    </div>
 
-                <label for="numCamarotes">Número de camarotes:</label>
-                <input type="number" id="numCamarotes" name="numCamarotes"><br><br>
-            </div>
+    <div id="campoCamarotes" class="campoOculto">
+        <label for="numCamarotes">Número de camarotes:</label>
+        <input type="number" id="numCamarotes" name="numCamarotes">
+    </div>
 
-            <input type="submit" value="Agruegar Embarcación">
-        </form>
-    </body>
+    <input type="submit" value="Agregar Embarcación">
+</form>
+
+<script>
+function mostrarCampos() {
+    const tipo = document.getElementById("tipo").value;
+    document.getElementById("campoMastiles").style.display = "none";
+    document.getElementById("campoPotencia").style.display = "none";
+    document.getElementById("campoCamarotes").style.display = "none";
+
+    if (tipo === "velero") {
+        document.getElementById("campoMastiles").style.display = "block";
+    } else if (tipo === "deportiva") {
+        document.getElementById("campoPotencia").style.display = "block";
+    } else if (tipo === "yate") {
+        document.getElementById("campoPotencia").style.display = "block";
+        document.getElementById("campoCamarotes").style.display = "block";
+    }
+}
+</script>
+
+</body>
 </html>
+
