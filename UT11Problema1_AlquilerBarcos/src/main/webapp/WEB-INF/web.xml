@@ -4,9 +4,25 @@
         <servlet-name>AddEmbarcacion</servlet-name>
         <servlet-class>com.mycompany.ut11problema1_alquilerbarcos.AddEmbarcacion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CalcularAlquiler</servlet-name>
+        <servlet-class>com.mycompany.ut11problema1_alquilerbarcos.CalcularAlquiler</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VerListado</servlet-name>
+        <servlet-class>com.mycompany.ut11problema1_alquilerbarcos.VerListado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>AddEmbarcacion</servlet-name>
         <url-pattern>/AddEmbarcacion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalcularAlquiler</servlet-name>
+        <url-pattern>/CalcularAlquiler</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VerListado</servlet-name>
+        <url-pattern>/VerListado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

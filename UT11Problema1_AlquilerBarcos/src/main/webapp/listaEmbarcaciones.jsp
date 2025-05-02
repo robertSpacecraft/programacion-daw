@@ -10,21 +10,21 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset=UTF-8">
+        <link rel="stylesheet" href="css/listaEmbarcaciones.css">
         <title>Lista de Embarcaciones</title>
     </head>
     <body>
-        <h1>Lista de Embarcaciones</h1>
+        <h1>Lista de Embarcaciones Disponibles:</h1>
 
         <!-- Muestro el mensaje que viene del servlet -->
         <%
             String mensaje = (String) request.getAttribute("mensaje");
-
             if (mensaje != null) {
         %>
 
         <!-- Para que el mensaje se vea en negrita y color azul -->
-        <p style="color: blue;"><b><%= mensaje %></b></p>
+        <p style="color: blue;"><b><%= mensaje%></b></p>
 
         <%
             }
@@ -69,7 +69,10 @@
         <%
             }
         %>
-        
-        <p><a href="index.html">Agregar una nueva embarcación</a></p>
+
+        <form action="index.html" method="get">
+            <button type="submit">Agregar una nueva embarcación</button>
+        </form>
+
     </body>
 </html>

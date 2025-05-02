@@ -1,0 +1,72 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 1 may 2025, 6:28:52
+    Author     : Robert
+*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    padding: 40px;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+    width: 100%;
+}
+
+.mensaje {
+    color: #007bff;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+strong {
+    color: #2c3e50;
+}
+
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-left: 4px solid #3498db;
+    font-family: Consolas, monospace;
+    white-space: pre-wrap;
+    margin: 15px 0;
+}
+
+a.button {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 12px 20px;
+    background-color: #3498db;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+a.button:hover {
+    background-color: #2c81ba;
+}

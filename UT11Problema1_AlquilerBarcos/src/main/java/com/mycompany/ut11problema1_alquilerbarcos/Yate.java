@@ -10,32 +10,32 @@ package com.mycompany.ut11problema1_alquilerbarcos;
  */
 public class Yate extends Embarcacion{
     private final double potencia;
-    private final int numCamarotes;
+    private final int numeroCamarotes;
     
-    public Yate(double potencia, int numCabinas, String matricula, double metrosEslora, int fabricacionYear){
+    public Yate(double potencia, int numCamarotes, String matricula, double metrosEslora, int fabricacionYear){
         super(matricula, metrosEslora, fabricacionYear);
         if (potencia < 0){
             System.out.println("La potencia debe ser un valor positivo");
             this.potencia = 1;
         } else this.potencia = potencia;
         
-        if (numCabinas < 0){
+        if (numCamarotes < 0){
             System.out.println("Un yate tiene al menos una cabina");
-            this.numCamarotes = 1;
-        } else this.numCamarotes = numCabinas;
+            this.numeroCamarotes = 1;
+        } else this.numeroCamarotes = numCamarotes;
     }
     
     @Override
     public double calcularFactor(){
         return (super.getMetrosEslora() * 10) 
                 + (this.potencia / 2)
-                + (this.numCamarotes * 10);
+                + (this.numeroCamarotes * 10);
     }
     
     @Override
     public String toString(){
         return super.toString()
                 + "\nPotencia: " + this.potencia
-                + "\nNúmero de cabinas: " + this.numCamarotes;
+                + "\nNúmero de cabinas: " + this.numeroCamarotes;
     }
 }
