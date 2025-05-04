@@ -50,7 +50,8 @@ public abstract class Embarcacion {
     
     @Override
     public String toString(){
-        return "Matrícula: " + this.matricula 
+        return  "Tipo de embarcación: " + this.getClass().getSimpleName()
+                + "\nMatrícula: " + this.matricula 
                 + "\nMetro de Eslora: " + this.metrosEslora
                 + "\nAño de Fabricación: " + this.fabricacionYear;
     }

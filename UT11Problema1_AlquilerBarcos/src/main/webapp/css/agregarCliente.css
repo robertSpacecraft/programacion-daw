@@ -3,16 +3,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 4 may 2025, 16:46:32
+    Created on : 4 may 2025, 17:58:02
     Author     : Robert
 */
-/* simulador.css */
+
+/* agregarCliente.css */
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f7fa;
-    margin: 0;
+    background-color: #f4f6f9;
     padding: 30px;
+    margin: 0;
     color: #333;
 }
 
@@ -26,55 +27,50 @@ form {
     max-width: 500px;
     margin: 0 auto;
     background-color: #ffffff;
-    padding: 25px;
+    padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
 }
 
 label {
     display: block;
+    margin-bottom: 8px;
     font-weight: bold;
-    margin-bottom: 5px;
-    margin-top: 15px;
-    color: #555;
 }
 
-input[type="text"],
-input[type="number"] {
+input[type="text"] {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    margin-bottom: 20px;
     border-radius: 5px;
+    border: 1px solid #ccc;
     box-sizing: border-box;
 }
 
-button[type="submit"] {
-    background-color: #3498db;
+button {
+    background-color: #007BFF;
     color: white;
+    padding: 12px 20px;
     border: none;
-    padding: 12px;
-    width: 100%;
-    margin-top: 20px;
     border-radius: 5px;
+    width: 100%;
     font-size: 16px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover {
-    background-color: #2980b9;
+button:hover {
+    background-color: #0056b3;
 }
 
 a {
     display: block;
     text-align: center;
-    margin-top: 25px;
-    text-decoration: none;
+    margin-top: 20px;
     color: #3498db;
+    text-decoration: none;
 }
 
 a:hover {
     text-decoration: underline;
 }
-

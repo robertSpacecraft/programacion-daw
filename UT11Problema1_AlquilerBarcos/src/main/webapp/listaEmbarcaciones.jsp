@@ -57,7 +57,7 @@
                     <td><%= e.getMetrosEslora()%></td>
                     <td><%= e.getFabricacionYear()%></td>
                     <td><%= e.getClass().getSimpleName()%></td>
-                    <td><a href="simulador.jsp?matricula=<%= e.getMatricula()%>">Simular Alquiler</a></td>
+                    <td><a href="VerListadoClientes?matricula=<%= e.getMatricula() %>">Simular Alquiler</a></td>
                 </tr>
                 <% } %>
             </tbody>

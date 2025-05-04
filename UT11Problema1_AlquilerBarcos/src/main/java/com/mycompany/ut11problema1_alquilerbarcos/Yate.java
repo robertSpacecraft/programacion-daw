@@ -36,6 +36,6 @@ public class Yate extends Embarcacion{
     public String toString(){
         return super.toString()
                 + "\nPotencia: " + this.potencia
-                + "\nNúmero de cabinas: " + this.numeroCamarotes;
+                + "\nNúmero de Camarotes: " + this.numeroCamarotes;
     }
 }

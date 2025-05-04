@@ -31,7 +31,7 @@
                 <p><strong>Datos del cliente:</strong></p>
                 <p><strong>Nombre: </strong><%= alquilerAmarre.getNombre()%></p>
                 <p><strong>DNI: </strong><%= alquilerAmarre.getDni()%></p>
-                <p><strong>Día alquilado: </strong><%= alquilerAmarre.getDiasAlquilado()%></p>
+                <p><strong>Días alquilado: </strong><%= alquilerAmarre.getDiasAlquilado()%></p>
                 <p><strong>Ubicación del amarre: </strong><%= alquilerAmarre.getUbicacionAmarre() %></p>
                 <p><strong>Embarcación: </strong></p>
                 <pre><%= alquilerAmarre.getEmbarcacion()%></pre>
