@@ -1,5 +1,13 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 /*
@@ -20,12 +28,15 @@ public class MeteoroApp {
         menu(input);
 
     }
-    
+
     //Menú
     public static void menu(Scanner input) {
         //Llamo a getFecha para obtener y devolver la fecha del usuario
-        getFecha(input);
+        String fecha = getFecha(input);
         
+        //Llamo a getDatos y los almaceno en un Map:
+        Map<Ciudad, DatosMeteorologicos> datos = getDatos(fecha);
+
         boolean persistenciaMenu = true;
         while (persistenciaMenu) {
             System.out.println("------------ TEMPERATURAS ------------");
@@ -46,7 +57,9 @@ public class MeteoroApp {
 
             switch (opcion) {
                 case 1:
-                    System.out.println("Ciudad: ");
+                    System.out.print("Introduzca la ciudad: ");
+                    String ciudad = input.nextLine();
+                    
                     break;
                 case 2:
                     System.out.println("");
@@ -70,9 +83,9 @@ public class MeteoroApp {
             }
         }
     }
-    
+
     //Recoge y devuelve la fecha del usuario:  
-   public static String getFecha(Scanner input){
+    public static String getFecha(Scanner input) {
         int dia;
         int mes;
         int anyo;
@@ -94,10 +107,53 @@ public class MeteoroApp {
             input.nextLine();
             System.out.println("Año no válido o sin registros");
         }
-        
+
         fecha = String.format("%04d%02d%02d", anyo, mes, dia);
-        input.close();
         return fecha;
-   }
+    }
+    
+    //Recibe la fecha y devuelve un Map con los datos
+    public static Map<Ciudad, DatosMeteorologicos> getDatos(String fecha){
+        Map<Ciudad, DatosMeteorologicos> datos = new HashMap<>();
+        
+        Path fichero = Paths.get("datos/Aemet" + fecha + ".csv");
+        System.out.println("Buscando archivo en: " + fichero.toAbsolutePath());
+        if (!Files.exists(fichero)){
+            System.out.println("Fichero no encontrado");
+            return datos;
+        } else {
+           try (BufferedReader br = new BufferedReader(Files.newBufferedReader(fichero))){
+               String linea;
+               while ((linea = br.readLine()) != null){
+                   String[] campos = linea.split(";");
+                   
+                   //Datos Ciudad
+                   String nombre = campos[0].trim();
+                   String provincia = campos[1].trim();
+                   
+                   //Datos meteorológicos
+                   double maxTemp = Double.parseDouble(campos[2].trim());
+                   String maxHora = campos[3].trim();
+                   double minTemp = Double.parseDouble(campos[4].trim());
+                   String minHora = campos[5].trim();
+                   
+                   double precipitaciones = Double.parseDouble(campos[6].trim());
+                   
+                   //Instancio los objetos Ciudad y DatosMeteorológicos
+                   Ciudad ciudad = new Ciudad(nombre, provincia);
+                   DatosMeteorologicos datosMet = new DatosMeteorologicos(maxTemp, minTemp, maxHora, minHora, precipitaciones);
+                   
+                   //Los meto en el HashMap
+                   datos.put(ciudad, datosMet);                  
+               }
+               
+            return datos;                     
+           
+           } catch (IOException e){
+               System.out.println("No se ha podido leer el archivo: " + e.getMessage());
+               return datos;
+           }
+        }
+    }
 
 }
