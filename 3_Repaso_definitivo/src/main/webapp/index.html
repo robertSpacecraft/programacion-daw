@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Personas</title>
+</head>
+<body>
+    <h1>Gestión de Personas</h1>
+
+    <!-- Buscar por nombre -->
+    <h3>Buscar por nombre</h3>
+    <form action="BuscarNombre" method="get">
+        <input type="text" name="nombre" placeholder="Nombre">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Buscar por apellido -->
+    <h3>Buscar por apellido</h3>
+    <form action="BuscarApellido" method="get">
+        <input type="text" name="apellido" placeholder="Apellido">
+        <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Mostrar lista completa -->
+    <h3>Mostrar lista completa</h3>
+    <form action="ListarPersonas" method="get">
+        <button type="submit">Mostrar</button>
+    </form>
+
+    <!-- Añadir persona -->
+    <h3>Añadir nueva persona</h3>
+    <form action="AddPersona" method="post">
+        <input type="number" name="id" placeholder="ID" required><br>
+        <input type="text" name="nombre" placeholder="Nombre" required><br>
+        <input type="text" name="apellido" placeholder="Apellido" required><br>
+        <input type="number" name="edad" placeholder="Edad" required><br>
+        <input type="text" name="notas" placeholder="Notas (separadas por comas)" required><br>
+        <button type="submit">Añadir</button>
+    </form>
+
+    <!-- Borrar persona -->
+    <h3>Borrar persona por ID</h3>
+    <form action="BorrarPersona" method="post">
+        <input type="number" name="id" placeholder="ID de la persona" required>
+        <button type="submit">Borrar</button>
+    </form>
+
+</body>
+</html>
